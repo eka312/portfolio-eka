@@ -14,7 +14,7 @@ import Tools1 from "/assets/tools/vscode.png";
 import Tools4 from "/assets/tools/tailwind.png";
 import Tools5 from "/assets/tools/bootstrap.png";
 import Tools6 from "/assets/tools/js.png";
-// import Tools7 from "/assets/tools/nodejs.png";
+import Tools7 from "/assets/tools/nodejs.png";
 import Tools8 from "/assets/tools/github.png";
 import Tools9 from "/assets/tools/ps.png";
 import Tools10 from "/assets/tools/canva.png";
@@ -65,13 +65,13 @@ export const listTools = [
     ket: "Language",
     dad: "600",
   },
-  // {
-  //   id: 7,
-  //   gambar: Tools7,
-  //   nama: "Node JS",
-  //   ket: "Javascript Runtime",
-  //   dad: "700",
-  // },
+  {
+    id: 7,
+    gambar: Tools7,
+    nama: "Node JS",
+    ket: "Javascript Runtime",
+    dad: "700",
+  },
   {
     id: 8,
     gambar: Tools8,

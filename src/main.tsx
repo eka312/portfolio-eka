@@ -1,16 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import Navbar from './komponen/Navbar.tsx'
-import 'remixicon/fonts/remixicon.css'
+import 'flowbite';
+import 'animate.css';
+import './index.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import App from './App.tsx';
+import { StrictMode } from 'react';
+import 'remixicon/fonts/remixicon.css';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+AOS.init();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <div className='container mx-auto px-4'>
-    <Navbar/>
-    <App />
-    </div>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
     
   </StrictMode>,
 )

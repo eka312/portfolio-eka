@@ -1,7 +1,18 @@
 @import "tailwindcss";
+@import "flowbite/src/themes/default";
+
 
 @layer base{
     body{
         font-family: "Montserrat", sans-serif;
     }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus{
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0px 1000px #374151 inset !important;
+    -webkit-text-fill-color:#fff !important;
+    transition: background-color 50000s ease-in-out 0s;
 }

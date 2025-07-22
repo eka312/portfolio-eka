@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [active, setActive] = useState(false);
@@ -31,7 +31,7 @@ const Navbar = () => {
             <ul className={`menu flex items-center md:gap-10 gap-4 md:static fixed 
             left-1/2 -translate-x-1/2  md:-translate-x-0 md:opacity-100 
             bg-white/30 backdrop-blur-md p-4 rounded-br-2xl  rounded-bl-2xl
-            md:bg-transparent transition-all md:transition-none
+            md:bg-transparent transition-all md:transition-none z-40
             ${active ? "top-0 opacity-100" : "-top-10 opacity-0"} `}>
                 <li>
                     <a href="#hero" className="sm:text-lg text-base font-medium" >
@@ -49,11 +49,19 @@ const Navbar = () => {
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="sm:text-lg text-base font-medium" >
+                    <a href="#kontak" className="sm:text-lg text-base font-medium" >
                         Kontak
                     </a>
                 </li>
             </ul>
+
+            <div>
+                <Link to="/login" className="text-white bg-violet-700 hover:bg-violet-600 
+                    py-2 px-4 rounded-lg transition">
+                    Login
+                </Link>
+            </div>
+
         </div>
     )
 }

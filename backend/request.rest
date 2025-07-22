@@ -1,0 +1,63 @@
+GET http://localhost:5000/users
+
+###
+GET http://localhost:5000/users/1
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "admin123"
+}
+
+
+
+
+# punya Proyek
+
+#buat mengambil data proyek
+###
+GET http://localhost:5000/proyeks
+
+
+#buat mengambil data proyek berdasarkan id
+###
+GET http://localhost:5000/proyeks/1
+
+
+#buat menambahkan proyek baru
+###
+POST http://localhost:5000/proyeks
+Content-Type: application/json
+
+{
+  "gambar": "dddd.png",
+  "judul": "Website ",
+  "deskripsi": "web toko menggunakan ReactJS + TailwindCSS.",
+  "tools": ["ReactJS", "TailwindCSS", "Vite", "NodeJS"],
+  "url_demo": "https://example.com/demo"
+}
+
+
+
+#buat mengupdate proyek berdasarkan id
+###
+PATCH  http://localhost:5000/proyeks/8
+Content-Type: application/json
+
+{
+  "gambar": "roti.png",
+  "judul": "Website roti",
+  "deskripsi": "web menggunakan ReactJS + TailwindCSS.",
+  "tools": ["ReactJS", "TailwindCSS", "Vite", "NodeJS"],
+  "url_demo": "https://example.com/demo"
+}
+
+
+#buat menghapus proyek berdasarkan id
+###
+DELETE http://localhost:5000/proyeks/9
+
+
