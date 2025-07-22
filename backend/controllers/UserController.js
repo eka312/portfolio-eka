@@ -1,34 +1,22 @@
 import User from "../models/UserModel.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-export const getUsers = async(req, res) => {
-    try{
-        const response = await User.findAll();
-        res.status(200).json(response);
-    }catch (error) {
-        console.log(error.message);
-    }
-}
-
-export const getUserById = async(req, res) => {
-    try{
-        const response = await User.findOne({
-            where:{
-                id:req.params.id
-            }
-               
+export const UserLogin = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where:{email: req.body.username}
         });
-        res.status(200).json(response);
-    }catch (error) {
-        console.log(error.message);
-    }
-}
 
+        if (!user) {
+            return res.status(404).json({ message: "User tidak ditemukan" });
+        }
 
-export const createUSer = async(req, res) => {
-    try{
-        await User.create(req.body);
-        res.status(201).json({msg: "user create"});
+        const match = await bcrypt.compare(req.body.password, user.password);
+        if (!match) return res.status(401).json({msg: "Password Salah"});
+
+        const token = jwt.sign({userId: user.id}, "rahasia", {expiresIn: 'id'});
     }catch (error) {
-        console.log(error.message);
+        res.status(500).json({msg: error.message});
     }
-}
+};

@@ -15,5 +15,6 @@ app.use(express.json());
 app.use('/users', UserRoute);
 app.use('/proyeks', ProyekRoute);
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
+
  
 app.listen(5000, ()=> console.log('server berjalan...'));

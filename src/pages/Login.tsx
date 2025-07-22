@@ -1,7 +1,13 @@
 import { useState } from "react";
 import {FiMail,FiLock, FiEye, FiEyeOff} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+
+interface LoginResponse {
+    token: string;
+    msg: string;
+}
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -27,10 +33,24 @@ const Login = () => {
 
         if (Object.keys(errors).length > 0) return;
 
+        try {
+            const res = await axios.post<LoginResponse>("http://localhost:5000/users", {
+                email: username,
+                password,
+            });
+
+            const token = res.data.token;
+            localStorage.setItem("token", token);
+            navigate("/dashboard");
+        } catch (error){
+        
+            console.error("Login gagal  terjadi error:", error);
+        }
+
         // Simulasi login dan set token di localStorage
-        const dummyToken = "dummy_token_123456"; // Token dummy
-        localStorage.setItem("token", dummyToken); // Simpan ke localStorage
-        navigate("/dashboard"); // Arahkan ke dashboard
+        // const dummyToken = "dummy_token_123456"; // Token dummy
+        // localStorage.setItem("token", dummyToken); // Simpan ke localStorage
+        // navigate("/dashboard"); // Arahkan ke dashboard
     };
 
     return(
