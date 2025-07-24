@@ -1,20 +1,3 @@
-GET http://localhost:5000/users
-
-###
-GET http://localhost:5000/users/1
-
-###
-POST http://localhost:5000/users
-Content-Type: application/json
-
-{
-    "email": "admin@gmail.com",
-    "password": "admin123"
-}
-
-
-
-
 # punya Proyek
 
 #buat mengambil data proyek
@@ -61,5 +44,39 @@ Content-Type: application/json
 DELETE http://localhost:5000/proyeks/9
 
 
+
+# punya User
+#buat mengambil data user
 ###
-POST http://localhost:5000/users/login
+GET http://localhost:5000/users
+Authorization: Bearer 
+
+#buat register/ nambah email
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "admin123",
+  "confPassword": "admin123"
+}
+
+
+#buat login
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "email" : "admin@gmail.com",
+  "password" : "admin123"
+}
+
+###
+GET http://localhost:5000/token
+
+
+
+###
+DELETE http://localhost:5000/logout

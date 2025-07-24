@@ -11,7 +11,14 @@ const __dirname = dirname(__filename);
 export const getProyek = async(req, res) => {
     try{
         const response = await Proyek.findAll();
-        res.status(200).json(response);
+        const proyekWithFullImagePath = response.map((proyek) => {
+            return {
+                ...proyek.dataValues,
+                gambar: proyek.gambar ? `http://localhost:5000/images/${proyek.gambar}` : null
+            };
+        });
+
+        res.status(200).json(proyekWithFullImagePath);
     }catch(error){
         console.log(error.message);
         res.status(500).json({msg: "terjadi kesalahan saat mengambil data proyek"});

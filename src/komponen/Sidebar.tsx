@@ -2,16 +2,26 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import {FaCode} from "react-icons/fa";
 import { useState } from 'react';
 import DataImage from "../data";
-
+import axios from "axios";
 
 
 function Sidebar() {
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   navigate("/");
+  // };
+
+  const handleLogout = async () => {
+    try {
+      await axios.delete("http://localhost:5000/logout", { withCredentials: true });
+      localStorage.removeItem("token");
+      navigate("/");
+    } catch (error) {
+      console.error("Logout gagal:", error);
+    }
   };
 
   const confirmLogout = () => {

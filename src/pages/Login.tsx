@@ -3,26 +3,29 @@ import {FiMail,FiLock, FiEye, FiEyeOff} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 interface LoginResponse {
     token: string;
     msg: string;
+    accessToken: string;
 }
 
 const Login = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
     const [showPass, setShowPass] = useState(false);
-    const [errorMsg, setErrorMsg] = useState<{username?: string; password?: string }>({});
+    const [errorMsg, setErrorMsg] = useState<{email?: string; password?: string }>({});
     const navigate = useNavigate();
+    
+
+
     
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const errors: typeof errorMsg = {};
 
-        if (!username.trim()) {
-            errors.username = "Email tidak boleh kosong.";
+        if (!email.trim()) {
+            errors.email = "Email tidak boleh kosong.";
         }
 
         if (password.length < 8) {
@@ -34,12 +37,12 @@ const Login = () => {
         if (Object.keys(errors).length > 0) return;
 
         try {
-            const res = await axios.post<LoginResponse>("http://localhost:5000/users", {
-                email: username,
+            const res = await axios.post<LoginResponse>("http://localhost:5000/login", {
+                email,
                 password,
-            });
+            },{ withCredentials: true });
 
-            const token = res.data.token;
+            const token = res.data.accessToken;
             localStorage.setItem("token", token);
             navigate("/dashboard");
         } catch (error){
@@ -59,17 +62,17 @@ const Login = () => {
                 <h2 className="text-3xl font-bold text-white mb-12 text-center">
                     Welcome Back
                 </h2>
-                <label htmlFor="username"  className="text-white font-semibold mb-1 block">Email</label>
+                <label htmlFor="email"  className="text-white font-semibold mb-1 block">Email</label>
                 <div className="relative mb-6">
                     <input 
-                        id="username"
+                        id="email"
                         type="text"
                         placeholder="Masukkan Email " 
                         autoComplete="email"
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
                         className={`p-4 pl-12 w-full rounded bg-gray-700 text-white placeholder:text-gray-400 focus:outline-none
-                            ${errorMsg.username ? "border border-red-500" : ""}`}
+                            ${errorMsg.email ? "border border-red-500" : ""}`}
                     />
                     <FiMail className="absolute top-4 left-4 text-gray-400 text-xl" />
                 </div>

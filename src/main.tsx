@@ -8,6 +8,10 @@ import { StrictMode } from 'react';
 import 'remixicon/fonts/remixicon.css';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
+
 
 AOS.init();
 
