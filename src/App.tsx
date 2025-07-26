@@ -4,6 +4,7 @@ import Login from "./pages/Login.tsx";
 import { PreLoader } from './komponen/PreLoader.tsx';
 import Dashboard from "./pages/Dashboard.tsx";
 import Proyek from './pages/Proyek.tsx';
+import HalDetail from "./pages/HalDetail.tsx";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/proyek" element={<Proyek/>} />
+        <Route path="/detail/:slug" element={<HalDetail />} />
       </Routes>
     </>
   )

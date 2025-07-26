@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React,{useState, useEffect} from 'react';
 
+
+
 type EditProps = {
   setShowEdit: (show: boolean) => void;
   getProyek: () => void;
@@ -21,6 +23,7 @@ function Edit({ setShowEdit, getProyek, proyekData }: EditProps) {
   const [deskripsi, setDeskripsi] = useState("");
   const [tools, setTools] = useState<string[]>([]);
   const [url_demo, setUrlDemo] = useState("");
+  
 
   useEffect(() => {
     setJudul(proyekData.judul);
@@ -68,6 +71,7 @@ function Edit({ setShowEdit, getProyek, proyekData }: EditProps) {
       });
 
       getProyek(); // memuat ulang data
+      
       setShowEdit(false); // menutup modal
     }catch (error) {
       console.error("Gagal mengupdate proyek:", error);
@@ -94,13 +98,18 @@ function Edit({ setShowEdit, getProyek, proyekData }: EditProps) {
             <div className="mb-5">
               <p className="text-sm text-gray-400 mb-1">Gambar Saat Ini:</p>
               <img 
-                src={`http://localhost:5000/images/${proyekData.gambar}`} 
+                src={proyekData.gambar} 
                 alt={proyekData.judul}
                 className="w-40 h-auto rounded-lg border border-gray-700"
               />
             </div>
           )}
 
+
+{/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, cumque? Nulla numquam quam repellendus, 
+inventore perferendis esse doloremque. Architecto sunt ad quidem aliquam, quod quam! Quam quis odio sit provident 
+corrupti odit tempora ipsum omnis ipsa placeat quidem est totam quod, rerum sapiente distinctio ducimus blanditiis, 
+sunt dignissimos aspernatur recusandae! */}
 
           {/* Gambar */}
           <div>

@@ -1,15 +1,48 @@
 import DataImage from "../data";
-import { listTools,listProyek } from "../data";
+import { listTools} from "../data";
 import Footer from "../komponen/Footer";
 import Navbar from "../komponen/Navbar";
+import {useState, useEffect} from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import slugify from "slugify";
+
+interface Proyek {
+    id: number;
+    judul: string;
+    deskripsi: string;
+    gambar: string;
+    tools: string[];
+    url_demo: string;
+}
 
 
 
 function LandingPage() {
+    const [proyekList, setProyekList] = useState<Proyek[]>([]);
+
+    const getProyek = async () => {
+    try {
+        const res = await axios.get<Proyek[]>("http://localhost:5000/proyeks");
+        setProyekList(res.data);
+    } catch (error) {
+        console.error("Gagal mengambil data proyek:", error);
+    }
+    };
+
+   
+    useEffect(() => {
+    getProyek();
+    }, []);
+
+
     return (
         <>
         <div className="container mx-auto px-4">
             <Navbar/>
+
+
+            
 
             {/* Hero */}
             <div id="hero" className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6  grid-cols-1  ">
@@ -99,20 +132,28 @@ function LandingPage() {
                     Berikut ini beberapa proyek yang telah saya buat
                 </p>
                 <div className="proyek-box mt-14 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-4">
-                    {listProyek.map((proyek) => (
+                    {proyekList.map((proyek, index) => (
                         <div key={proyek.id} className="p-4 bg-gray-800 rounded-md" data-aos="fade-up" data-aos-duration="1000" 
-                            data-aos-delay={proyek.dad}  >
+                            data-aos-delay={index * 100}  >
                             <img src={proyek.gambar} alt="proyek image" loading="lazy"  />
                             <div>
-                                <h1 className="text-2xl font-bold my-4">{proyek.nama}</h1>
-                                <p className="text-base/loose mb-4">{proyek.desk}</p>
+                                <h1 className="text-2xl font-bold my-4">{proyek.judul}</h1>
+                                <p className="text-base/loose mb-4">
+                                    {/* {proyek.deskripsi}  */}
+                                    {proyek.deskripsi.split(" ").slice(0, 15).join(" ")}
+                                </p>
                                 <div className="flex flex-wrap gap-2">
-                                    {proyek.tools.map((tool,index) => (
-                                        <p key={index} className="py-1 px-3 border border-gray-500 bg-gray-600 rounded-md font-semibold">{tool}</p>
-                                    ))}
+                                    {Array.isArray(proyek.tools) ? (
+                                        proyek.tools?.map((tool: string, i: number) => (
+                                            <p key={i} className="py-1 px-3 border border-gray-500 bg-gray-600 rounded-md font-semibold">{tool}</p>
+                                        ))
+                                    ):(
+                                        <p className="text-red-400 text-sm">Data tools tidak valid</p>
+                                    )}
+                                   
                                 </div>
                                 <div className="mt-8 text-center">
-                                    <a href="#" className="bg-violet-700 p-3 rounded-lg block border border-gray-600 hover:bg-violet-600">Lihat Website</a>
+                                    <Link to={`/detail/${slugify(proyek.judul, { lower: true, strict: true })}`}   className="bg-violet-700 p-3 rounded-lg block border border-gray-600 hover:bg-violet-600">Lihat Detail</Link>
                                 </div>
                             </div>
                         </div>
@@ -121,6 +162,8 @@ function LandingPage() {
             </div>
             {/* Proyek */}
 
+
+                    
 
             {/* kontak */}
             <div id="kontak" className="kontak mt-32 sm:p-10 p-0 " >

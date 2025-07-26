@@ -1,12 +1,17 @@
 import {Sequelize} from  "sequelize";
 import db from "../config/db.js";
+import slugify from "slugify";
 
 const {DataTypes} = Sequelize;
 
 const Proyek = db.define('proyeks',{
     gambar: DataTypes.STRING,
     judul: DataTypes.STRING,
-    deskripsi: DataTypes.STRING,
+    slug: {
+        type: DataTypes.STRING,
+        unique: true
+    },
+    deskripsi: DataTypes.TEXT,
     tools:{
         type: DataTypes.TEXT,
         get() {

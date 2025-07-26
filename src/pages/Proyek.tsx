@@ -23,7 +23,7 @@ function Proyek() {
   const [proyek, setProyek] = useState<ProyekType[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedProyek, setSelectedProyek] = useState<ProyekType | null>(null);
-
+  
  
 
 
@@ -51,6 +51,7 @@ function Proyek() {
       setShowHapus(false); // menutup modal konfirmasi
       setSelectedId(null); // reset ID yang dipilih
       getProyek(); // memuat ulang data setelah penghapusan
+     
     } catch (error) {
       console.error("Gagal menghapus proyek:", error);
     }
@@ -95,7 +96,7 @@ function Proyek() {
                   <tr key={item.id} className="border-t border-gray-600 " >
                     <td className="px-4 py-2">{index + 1}</td>
                     <td className="px-4 py-2">
-                      <img src={`http://localhost:5000/images/${item.gambar}`} alt={item.judul} className="w-auto" />
+                      <img src={item.gambar} alt={item.judul} className="w-auto" />
                     </td>
                     <td className="px-4 py-2">{item.judul}</td>
                     <td className="px-4 py-2">{item.deskripsi}</td>
@@ -121,15 +122,15 @@ function Proyek() {
                           onClick={() => {setSelectedProyek(item); 
                             setShowEdit(true);
                           }} 
-                          className="flex items-center gap-1.5 px-3  py-1 text-sm bg-yellow-500 hover:bg-yellow-400 rounded" >
-                          <FaEdit /> Edit
+                          className="flex items-center gap-1.5 px-3  py-3 text-sm bg-yellow-500 hover:bg-yellow-400 rounded" >
+                          <FaEdit className="text-xl" />
                         </button>
                         <button 
                           onClick={() => {setSelectedId(item.id);
                           setShowHapus(true);
                           }} 
-                          className="flex items-center gap-1.5 px-3 py-1 text-sm bg-red-600 hover:bg-red-500 rounded"  >
-                          <FaTrash /> Hapus
+                          className="flex items-center gap-1.5 px-3 py-3 text-sm bg-red-600 hover:bg-red-500 rounded"  >
+                          <FaTrash className="text-xl" />
                         </button>
                       </div>
                     </td>
