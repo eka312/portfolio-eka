@@ -2,6 +2,7 @@ import axios from 'axios';
 import React,{useState} from 'react';
 
 
+
 type tambahProps = {
   setShowForm: (show: boolean) => void;
   getProyek: () => void;
@@ -14,7 +15,9 @@ function Tambah({ setShowForm, getProyek }: tambahProps) {
   const [deskripsi, setDeskripsi] = useState("");
   const [tools, setTools] = useState<string[]>([]);
   const [url_demo, setUrlDemo] = useState("");
+  
 
+  
 
   const handleCheckbox = (tool: string) => {
     if (tools.includes(tool)) {
@@ -45,7 +48,9 @@ function Tambah({ setShowForm, getProyek }: tambahProps) {
       });
 
       getProyek(); // memuat ulang data
+      
       setShowForm(false); // menutup modal
+      
     }catch (error) {
       console.error("Gagal menambahkan proyek:", error);
     }
