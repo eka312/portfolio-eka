@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5173'
+    origin: ['http://localhost:5173',  'https://portfolio-eka.netlify.app']
 }));
 app.use(cookieParser());
 app.use(express.json());
@@ -34,5 +34,6 @@ try {
 }
 
 app.use(router);
- 
+
+
 app.listen(5000, ()=> console.log('server berjalan...'));
