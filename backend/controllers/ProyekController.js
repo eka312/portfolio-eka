@@ -53,7 +53,7 @@ export const  getProyekById = async(req, res) => {
 //tambah data
 export const createProyek = async(req, res) => {
     try{
-        const{judul, deskripsi, tools,url_demo} = req.body;
+        const{judul, deskripsi, tools,status,url_demo} = req.body;
         const gambar = req.file ? req.file.filename : null;
         const slug = generateSlug(judul);
         
@@ -64,6 +64,7 @@ export const createProyek = async(req, res) => {
             deskripsi, 
             tools: JSON.parse(tools),
             url_demo,
+            status,
         });
         res.status(201).json({msg: "Proyek create"});
     }catch (error) {
@@ -96,7 +97,7 @@ export const updateProyek = async(req, res) => {
             return res.status(404).json({ msg: "Proyek tidak ditemukan" });
         }
 
-        const {judul, deskripsi, tools, url_demo} = req.body;
+        const {judul, deskripsi, tools,status, url_demo} = req.body;
         const slug = generateSlug(judul);
         let gambar = proyek.gambar; 
 
@@ -113,7 +114,8 @@ export const updateProyek = async(req, res) => {
             deskripsi,
             tools: JSON.parse(tools),
             url_demo,
-            gambar
+            gambar,
+            status,
         }, {
             where: {
                 id: req.params.id

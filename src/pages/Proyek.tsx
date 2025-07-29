@@ -4,8 +4,7 @@ import { useState,useEffect } from "react";
 import Tambah from "../komponen/Tambah";
 import Edit from "../komponen/Edit";
 import axios from "axios";
-
-
+import { StatusProyek } from "../types/statusProyek";
 
 type ProyekType = {
   id: number;
@@ -13,8 +12,11 @@ type ProyekType = {
   judul: string;
   deskripsi: string;
   tools: string[]; 
+  status: StatusProyek;
   url_demo: string;
 };
+
+
 
 function Proyek() {
   const [showForm, setShowForm] = useState(false);
@@ -87,6 +89,7 @@ function Proyek() {
                   <th scope="col" className="px-4 py-3" >Judul</th>
                   <th scope="col" className="px-4 py-3" >Deskripsi</th>
                   <th scope="col"  className="px-4 py-3" >Tools</th>
+                  <th scope="col"  className="px-4 py-3" >Status</th>
                   <th scope="col"  className="px-4 py-3" >URL Demo</th>
                   <th scope="col"  className="px-4 py-3" >Aksi</th>
                 </tr>
@@ -113,6 +116,7 @@ function Proyek() {
                           }
                         })()};
                     </td>
+                    <td className="px-4 py-2">{item.status}</td>
                     <td className="px-4 py-2  text-blue-400 underline cursor-pointer">{item.url_demo}</td>
                     
                     {/* aksi */}

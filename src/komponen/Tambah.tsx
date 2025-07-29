@@ -14,6 +14,7 @@ function Tambah({ setShowForm, getProyek }: tambahProps) {
   const [judul, setJudul] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [tools, setTools] = useState<string[]>([]);
+  const [status, setStatus] = useState("aktif");
   const [url_demo, setUrlDemo] = useState("");
   
 
@@ -38,6 +39,7 @@ function Tambah({ setShowForm, getProyek }: tambahProps) {
       formData.append("judul", judul);
       formData.append("deskripsi", deskripsi);
       formData.append("tools", JSON.stringify(tools));
+      formData.append("status", status);
       formData.append("url_demo", url_demo);
 
 
@@ -136,6 +138,22 @@ function Tambah({ setShowForm, getProyek }: tambahProps) {
                   </label>
                 ))}
               </div>
+            </div>
+
+            {/* status */}
+            <div>
+              <label htmlFor="status" className="block mb-1 text-sm font-semibold text-white">
+                Status
+              </label>
+              <select
+                id="status"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-500"
+              >
+                <option value="aktif">Aktif</option>
+                <option value="selesai">Selesai</option>
+              </select>
             </div>
 
             {/* URL Demo */}

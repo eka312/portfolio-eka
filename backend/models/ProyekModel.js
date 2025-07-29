@@ -23,6 +23,10 @@ const Proyek = db.define('proyeks',{
         }
     },
     url_demo: DataTypes.STRING,
+    status: {
+        type: DataTypes.ENUM("aktif", "selesai"),
+        defaultValue: "aktif", 
+    }
 
 },{
     freezeTableName:true

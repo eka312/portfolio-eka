@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React,{useState, useEffect} from 'react';
-
+import { StatusProyek } from "../types/statusProyek";
 
 
 type EditProps = {
@@ -13,6 +13,7 @@ type EditProps = {
     tools: string[];
     url_demo: string;
     gambar: string;
+    status: StatusProyek;
   };
 }
 
@@ -23,6 +24,8 @@ function Edit({ setShowEdit, getProyek, proyekData }: EditProps) {
   const [deskripsi, setDeskripsi] = useState("");
   const [tools, setTools] = useState<string[]>([]);
   const [url_demo, setUrlDemo] = useState("");
+  const [status, setStatus] = useState("aktif");
+
   
 
   useEffect(() => {
@@ -38,6 +41,7 @@ function Edit({ setShowEdit, getProyek, proyekData }: EditProps) {
       console.error("Gagal parsing tools:", error);
       setTools([]);
     }
+    setStatus((proyekData).status ?? "aktif");
     setUrlDemo(proyekData.url_demo);
   },[proyekData]);
 
@@ -61,6 +65,7 @@ function Edit({ setShowEdit, getProyek, proyekData }: EditProps) {
       formData.append("judul", judul);
       formData.append("deskripsi", deskripsi);
       formData.append("tools", JSON.stringify(tools));
+      formData.append("status", status);
       formData.append("url_demo", url_demo);
 
 
@@ -179,6 +184,23 @@ sunt dignissimos aspernatur recusandae! */}
                 ))}
               </div>
             </div>
+
+            {/* Status */}
+            <div>
+              <label htmlFor="status" className="block mb-1 text-sm font-semibold text-white">
+                Status Proyek
+              </label>
+              <select
+                id="status"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700"
+              >
+                <option value="aktif">Aktif</option>
+                <option value="selesai">Selesai</option>
+              </select>
+            </div>
+
 
             {/* URL Demo */}
             <div>
