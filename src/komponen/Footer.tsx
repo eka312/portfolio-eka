@@ -1,11 +1,15 @@
+import { Link } from "react-router-dom"
+
+
 const Footer = () => {
     return (
+        
         <div className="mt-32 py-4 flex md:flex-row flex-col gap-6 md:gap-0 justify-between items-center">
             <h1 className=" text-2xl font-bold">Portfolio</h1>
             <div className=" flex gap-7">
-                <a href="#hero" className="">Beranda</a>
-                <a href="#tentang" className="">Tentang</a>
-                <a href="#proyek" className="">Proyek</a>
+                <Link to="/#hero" className="">Beranda</Link>
+                <Link to="/#tentang" className="">Tentang</Link>
+                <Link to="/#proyek" className="">Proyek</Link>
             </div>
             <div className=" flex items-center gap-3">
                 <a href="#">

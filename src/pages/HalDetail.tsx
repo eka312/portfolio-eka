@@ -1,8 +1,9 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../komponen/Navbar";
 import Footer from "../komponen/Footer";
+
 
 interface Proyek {
   id: number;
@@ -14,11 +15,12 @@ interface Proyek {
 }
 
 function HalDetail() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [proyek, setProyek] = useState<Proyek | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { slug } = useParams<{ slug: string }>();
+  
 
   useEffect(() => {
     const fetchProyek = async () => {
@@ -54,6 +56,9 @@ function HalDetail() {
   }
 
   return (
+    
+   
+      
     <div className="container mx-auto px-4 text-white">
       <Navbar />
 
@@ -94,18 +99,20 @@ function HalDetail() {
             >
               Lihat Demo
             </a>
-            <button
+            {/* <button
               onClick={() => navigate(-1)}
               className="bg-gray-700 px-5 py-3 rounded-md hover:bg-gray-600 transition"
             >
               Kembali
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
 
       <Footer />
     </div>
+
+    
   );
 }
 

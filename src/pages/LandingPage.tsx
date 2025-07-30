@@ -1,11 +1,12 @@
 import DataImage from "../data";
 import { listTools} from "../data";
-import Footer from "../komponen/Footer";
-import Navbar from "../komponen/Navbar";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import slugify from "slugify";
+import Navbar from "../komponen/Navbar";
+import Footer from "../komponen/Footer";
+import { useLocation } from "react-router-dom";
 
 interface Proyek {
     id: number;
@@ -20,7 +21,9 @@ interface Proyek {
 
 function LandingPage() {
     const [proyekList, setProyekList] = useState<Proyek[]>([]);
+    const location = useLocation();
 
+    
     const getProyek = async () => {
     try {
         const res = await axios.get<Proyek[]>("http://localhost:5000/proyeks");
@@ -35,14 +38,23 @@ function LandingPage() {
     getProyek();
     }, []);
 
+    useEffect(() => {
+        if (location.hash) {
+          const el = document.querySelector(location.hash);
+          if (el) {
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }
+        }
+    }, [Location]);
+
 
     return (
         <>
         <div className="container mx-auto px-4">
             <Navbar/>
 
-
-            
 
             {/* Hero */}
             <div id="hero" className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6  grid-cols-1  ">

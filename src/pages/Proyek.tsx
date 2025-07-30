@@ -63,47 +63,50 @@ function Proyek() {
   return (
     <>
     <div className=" flex ">
-      <div className="w-72">
+      <div className=" w-20 sm:w-72">
         <Sidebar/>
       </div>
       
 
       <div  className="overflow-y-auto overflow-hidden  flex-1 relative">
-        {/* onClick={() => setShowForm(true)} */}
-        <div  className=" mt-3.5 mr-14 flex-1  " >
-          <div className="flex justify-between items-center mb-5 p-2.5 text-4xl w-full">
-            <h3 className="flex gap-3 " ><FaFolderOpen className="text-4xl " /> Data Projek</h3>
-            <button onClick={() => setShowForm(true)}   className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white 
-              font-bold px-4 py-2 text-sm rounded transition" data-modal-target="crud-modal" data-modal-toggle="crud-modal"  > 
+        <div  className=" sm:mt-3.5 mr-7 sm:mr-14 flex-1  " >
+          <div className="flex justify-between items-center  sm:mb-5 p-2.5 w-full">
+            <h3 className="flex gap-2 sm:gap-3 " >
+              <FaFolderOpen className="text-3xl sm:text-5xl " /> 
+              <span className="text-[14px]  sm:text-4xl">Data Projek</span>
+              
+            </h3>
+            <button onClick={() => setShowForm(true)}   className="flex items-center sm:gap-2 gap-1 bg-violet-600 hover:bg-violet-500 text-white 
+              font-bold  px-2 text-xs sm:px-4 py-2 sm:text-sm rounded transition" data-modal-target="crud-modal" data-modal-toggle="crud-modal"  > 
               <FaPlus/> Tambah 
             </button>
           </div>
 
-          <div className="border-2 mt-8 border-gray-700 rounded-lg  relative overflow-x-auto flex-1 ">
+          <div className="border-2 my-5 sm:mt-8 border-gray-700 rounded-lg  relative overflow-x-auto flex-1 ">
             <table className="w-full table-auto bg-gray-800 dark:text-white  
-              text-sm text-left rtl:text-right " >
+              text-xs  sm:text-sm text-left " >
               <thead className="bg-gray-700 text-left text-xs uppercase">
                 <tr>
-                  <th scope="col" className="px-4 py-3" >No</th>
-                  <th scope="col" className="px-4 py-3" >Gambar</th>
-                  <th scope="col" className="px-4 py-3" >Judul</th>
-                  <th scope="col" className="px-4 py-3" >Deskripsi</th>
-                  <th scope="col"  className="px-4 py-3" >Tools</th>
-                  <th scope="col"  className="px-4 py-3" >Status</th>
-                  <th scope="col"  className="px-4 py-3" >URL Demo</th>
-                  <th scope="col"  className="px-4 py-3" >Aksi</th>
+                  <th scope="col" className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >No</th>
+                  <th scope="col" className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >Gambar</th>
+                  <th scope="col" className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >Judul</th>
+                  <th scope="col" className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >Deskripsi</th>
+                  <th scope="col"  className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >Tools</th>
+                  <th scope="col"  className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >Status</th>
+                  <th scope="col"  className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >URL Demo</th>
+                  <th scope="col"  className="px-2 py-2 text-[11px] sm:px-4 sm:py-3" >Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 {proyek.map((item, index) => (
                   <tr key={item.id} className="border-t border-gray-600 " >
-                    <td className="px-4 py-2">{index + 1}</td>
-                    <td className="px-4 py-2">
+                    <td className=" px-2 sm:px-4 py-2">{index + 1}</td>
+                    <td className=" px-2 sm:px-4 py-2">
                       <img src={item.gambar} alt={item.judul} className="w-auto" />
                     </td>
-                    <td className="px-4 py-2">{item.judul}</td>
-                    <td className="px-4 py-2">{item.deskripsi}</td>
-                    <td className="px-4 py-2">
+                    <td className=" px-2 sm:px-4 py-2">{item.judul}</td>
+                    <td className=" px-2 sm:px-4 py-2">{item.deskripsi}</td>
+                    <td className=" px-2 sm:px-4 py-2">
                       {Array.isArray(item.tools)
                         ? item.tools.join(', ')
                         : (() => {
@@ -116,24 +119,24 @@ function Proyek() {
                           }
                         })()};
                     </td>
-                    <td className="px-4 py-2">{item.status}</td>
-                    <td className="px-4 py-2  text-blue-400 underline cursor-pointer">{item.url_demo}</td>
+                    <td className=" px-2 sm:px-4 py-2">{item.status}</td>
+                    <td className=" px-2 sm:px-4 py-2  text-blue-400 underline cursor-pointer">{item.url_demo}</td>
                     
                     {/* aksi */}
-                    <td className="px-4 py-2 gap-2" >
+                    <td className=" px-2 sm:px-4 py-2 " >
                       <div className="flex items-center justify-center h-full gap-2">
                         <button  
                           onClick={() => {setSelectedProyek(item); 
                             setShowEdit(true);
                           }} 
-                          className="flex items-center gap-1.5 px-3  py-3 text-sm bg-yellow-500 hover:bg-yellow-400 rounded" >
+                          className="  px-2 py-2 sm:px-3 sm:py-3  bg-yellow-500 hover:bg-yellow-400 rounded" >
                           <FaEdit className="text-xl" />
                         </button>
                         <button 
                           onClick={() => {setSelectedId(item.id);
                           setShowHapus(true);
                           }} 
-                          className="flex items-center gap-1.5 px-3 py-3 text-sm bg-red-600 hover:bg-red-500 rounded"  >
+                          className=" px-2 py-2 sm:px-3 sm:py-3  bg-red-600 hover:bg-red-500 rounded"  >
                           <FaTrash className="text-xl" />
                         </button>
                       </div>

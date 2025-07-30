@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react"
+import AuthButton from "./AuthButton";
 import { Link } from "react-router-dom";
+
+
+
 
 const Navbar = () => {
     const [active, setActive] = useState(false);
@@ -21,6 +25,7 @@ const Navbar = () => {
     }, [])
 
     return (
+        
         <div className="navbar py-7  flex items-center justify-between">
             <div className="logo">
                 <h1 className="text-3xl font-bold bg-white text-black 
@@ -34,32 +39,29 @@ const Navbar = () => {
             md:bg-transparent transition-all md:transition-none z-40
             ${active ? "top-0 opacity-100" : "-top-10 opacity-0"} `}>
                 <li>
-                    <a href="#hero" className="sm:text-lg text-base font-medium" >
+                    <Link to="/#hero" className="sm:text-lg text-base font-medium" >
                         Beranda
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#tentang" className="sm:text-lg text-base font-medium">
+                    <Link to="/#tentang" className="sm:text-lg text-base font-medium">
                         Tentang
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#proyek" className="sm:text-lg text-base font-medium" >
+                    <Link to="/#proyek" className="sm:text-lg text-base font-medium" >
                         Proyek
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#kontak" className="sm:text-lg text-base font-medium" >
+                    <Link to="/#kontak" className="sm:text-lg text-base font-medium" >
                         Kontak
-                    </a>
+                    </Link>
                 </li>
             </ul>
 
             <div>
-                <Link to="/login" className="text-white bg-violet-700 hover:bg-violet-600 
-                    py-2 px-4 rounded-lg transition">
-                    Login
-                </Link>
+                <AuthButton/>
             </div>
 
         </div>
