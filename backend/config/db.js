@@ -1,6 +1,8 @@
-import { Sequelize } from "sequelize";
-import dotenv from "dotenv";
-dotenv.config();
+// import { Sequelize } from "sequelize";
+// import dotenv from "dotenv";
+import postgres from 'postgres'
+
+// dotenv.config();
 
 // ✅ Logging semua ENV ke terminal
 console.log("ENV CHECK:");
@@ -28,15 +30,20 @@ console.log("DATABASE_URL:", process.env.DATABASE_URL);
 //   }
 // );
 
-const db = new Sequelize(process.env.DATABASE_URL, {
-  dialect: "postgres",
-  dialectOptions:{
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  }
-});
+// const db = new Sequelize(process.env.DATABASE_URL, {
+//   dialect: "postgres",
+//   dialectOptions:{
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false
+//     }
+//   }
+// });
+
+const connectionString = process.env.DATABASE_URL
+const db = postgres(connectionString)
+
+
 
 
 
