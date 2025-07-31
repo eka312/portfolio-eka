@@ -6,13 +6,27 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Proyek from './pages/Proyek.tsx';
 import HalDetail from "./pages/HalDetail.tsx";
 import ProtectedRoute from './router/ProtectedRoute.tsx';
+import { useState, useEffect } from 'react';
+import { supabase } from "./utils/supabase.ts";
 
 
 function App() {
   const location = useLocation();
   const showPreloader = location.pathname === "/";
-  
+  const [todos, setTodos] = useState([])
 
+
+  useEffect(() => {
+    function getTodos() {
+      const { data: todos } = await supabase.from('todos').select()
+
+      if (todos.length > 1) {
+        setTodos(todos)
+      }
+    }
+
+    getTodos()
+  }, [])
 
   return (
     <>
