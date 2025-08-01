@@ -11,12 +11,13 @@ import ProtectedRoute from './router/ProtectedRoute.tsx';
 function App() {
   const location = useLocation();
   const showPreloader = location.pathname === "/";
-  
+
 
 
   return (
     <>
       {showPreloader && <PreLoader/>}
+
 
       <Routes>
         <Route path="/" element={<LandingPage/>} />

@@ -17,13 +17,18 @@ const __dirname = path.dirname(__filename);
 
 
 const app = express();
+
 app.use(cors({
     credentials: true,
     origin: ['http://localhost:5173',  'https://portfolio-eka.netlify.app']
 }));
+
 app.use(cookieParser());
 app.use(express.json());
+
 app.use('/proyeks', ProyekRoute);
+app.use(router);
+
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
 try {
@@ -33,7 +38,7 @@ try {
     console.error('Koneksi ke database gagal:', error);
 }
 
-app.use(router);
+
 
 
 app.listen(5000, ()=> console.log('server berjalan...'));
